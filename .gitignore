@@ -1,0 +1,50 @@
+## Archivos generados por Visual Studio ##
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Carpetas de compilación ##
+bin/
+obj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]og/
+
+## Archivos de dependencias ##
+*.dll
+*.pdb
+*.cache
+*.log
+
+## Archivos temporales ##
+*.tmp
+*.temp
+*.bak
+*.swp
+
+## Archivos de publicación ##
+*.publishsettings
+*.pubxml
+*.publishproj
+
+## Archivos de paquetes NuGet ##
+*.nupkg
+*.nuspec
+packages/
+*.snupkg
+
+## Archivos de configuración local ##
+appsettings.Development.json
+secrets.json
+
+## Archivos Rider / ReSharper ##
+.idea/
+*.DotSettings.user
+
+## Archivos de configuración de VS Code ##
+.vscode/
+
+## Otros ##
+[Tt]est[Rr]esult*/
