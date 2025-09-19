@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp1
+﻿using System;
+
+namespace ConsoleApp1
 {
     class Program
     {
@@ -36,6 +38,7 @@
             {
                 case 1:
                     Console.WriteLine("Se ha seleccionado el rol: Operario");
+                    OperatorPayment();
                     break;
 
                 case 2:
@@ -50,7 +53,17 @@
         #endregion
 
         #region Role Payment and Raise
-        // the function to create the payment and salary raise has to be developed
+        
+        // this function calculates the payment for an operator
+        static void OperatorPayment()
+        {
+            byte workedHours = 0;
+            float raise = 0.15f;
+            float baseSalary = 0;
+
+
+        }
+
         #endregion
     }
 }
