@@ -15,14 +15,14 @@
             byte employeeRole = 0;
 
             Console.WriteLine("Identificación del empleado: ");
-            employeeId = Console.ReadLine();
+            employeeId = Console.ReadLine()!;
 
             Console.WriteLine("\nNombre del empleado: ");
-            employeeName = Console.ReadLine();
+            employeeName = Console.ReadLine()!;
 
             Console.WriteLine("\nRol del empleado: ");
             Console.WriteLine("1 = Operario \n2 = Técnico \n3 = Profesional");
-            employeeRole = byte.Parse(Console.ReadLine());
+            employeeRole = byte.Parse(Console.ReadLine()!);
 
             Console.Clear();
             RoleValidation(employeeRole);
@@ -30,7 +30,6 @@
         #endregion
 
         #region Employee Role Validation
-        //the function to verify the employee's role has to be created
         static void RoleValidation(byte employeeRole)
         {
             switch (employeeRole)
@@ -48,7 +47,10 @@
                     break;
             }
         }
+        #endregion
 
+        #region Role Payment and Raise
+        // the function to create the payment and salary raise has to be developed
         #endregion
     }
 }
