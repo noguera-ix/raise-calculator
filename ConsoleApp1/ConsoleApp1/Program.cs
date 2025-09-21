@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace ConsoleApp1
 {
@@ -42,16 +43,22 @@ namespace ConsoleApp1
                 case 1:
                     Console.WriteLine("Se ha seleccionado el rol: Operario");
                     OperatorPayment();
+                    Console.Clear();
+                    PaymentReport();
                     break;
 
                 case 2:
                     Console.WriteLine("Se ha seleccionado el rol: Técnico");
                     TechnicianPayment();
+                    Console.Clear();
+                    PaymentReport();
                     break;
 
                 case 3:
                     Console.WriteLine("Se ha seleccionado el rol: Profesional");
                     ProfessionalPayment();
+                    Console.Clear();
+                    PaymentReport();
                     break;
             }
         }
@@ -67,15 +74,19 @@ namespace ConsoleApp1
             float raise = 1.15f;
             float hourSalary = 0;
             float grossSalary = 0;
+            float ssDeduction = 0.0917f;
+            float netSalary = 0;
 
-            Console.WriteLine("\nIngrese el salario del empleado: ");
+            Console.WriteLine("\nSalario a pagar por hora: ");
             hourSalary = float.Parse(Console.ReadLine()!);
 
             Console.WriteLine("\nIngrese las horas laboradas: ");
             workedHours = byte.Parse(Console.ReadLine()!);
 
             grossSalary = (hourSalary * workedHours) * raise;
-            Console.WriteLine("\nSalario reportado: " + grossSalary.ToString());
+
+            netSalary = (float) (grossSalary * (1 - ssDeduction));
+
         }
 
         // this function calculates the payment for a technician
@@ -85,15 +96,18 @@ namespace ConsoleApp1
             float raise = 1.10f;
             float hourSalary = 0;
             float grossSalary = 0;
+            float ssDeduction = 0.0917f;
+            float netSalary = 0;
 
-            Console.WriteLine("\nIngrese el salario del empleado: ");
+            Console.WriteLine("\nSalario a pagar por hora: ");
             hourSalary = float.Parse(Console.ReadLine()!);
 
             Console.WriteLine("\nIngrese las horas laboradas: ");
             workedHours = byte.Parse(Console.ReadLine()!);
 
             grossSalary = (hourSalary * workedHours) * raise;
-            Console.WriteLine("\nSalario reportado: " + grossSalary.ToString());
+
+            netSalary = (float)(grossSalary * (1 - ssDeduction));
         }
 
         //this function calculates the payment for a professional
@@ -103,17 +117,42 @@ namespace ConsoleApp1
             float raise = 1.05f;
             float hourSalary = 0;
             float grossSalary = 0;
+            float ssDeduction = 0.0917f;
+            float netSalary = 0;
 
-            Console.WriteLine("\nIngrese el salario del empleado: ");
+            Console.WriteLine("\nSalario a pagar por hora: ");
             hourSalary = float.Parse(Console.ReadLine()!);
 
             Console.WriteLine("\nIngrese las horas laboradas: ");
             workedHours = byte.Parse(Console.ReadLine()!);
 
             grossSalary = (hourSalary * workedHours) * raise;
-            Console.WriteLine("\nSalario reportado: " + grossSalary.ToString());
+
+            netSalary = (float)(grossSalary * (1 - ssDeduction));
         }
 
+        #endregion
+
+        #region Show Payment Report
+
+        // this method shows the detailed payment report
+        static void PaymentReport()
+        {
+            // TODO: IMPLEMENTAR FUNCIONALIDAD DEL REPORTE DETALLADO DE PAGO
+            Console.WriteLine("Resumen de pago\n");
+
+            Console.WriteLine("Cédula del empleado: ");
+            Console.WriteLine("Nombre del empleado: ");
+            Console.WriteLine("Tipo de empleado: ");
+            Console.WriteLine("Salario por hora: ");
+            Console.WriteLine("Cantidad de horas: ");
+            Console.WriteLine("Salario ordinario: ");
+            Console.WriteLine("Aumento: ");
+            Console.WriteLine("Salario bruto: ");
+            Console.WriteLine("Deducción CCSS: ");
+            Console.WriteLine("Salario neto: ");
+        }
+        
         #endregion
     }
 }
