@@ -3,49 +3,49 @@ using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
-    class Empleado
+    class Employee
     {
         public string Id { get; set; }
-        public string Nombre { get; set; }
-        public string Rol { get; set; }
-        public float SalarioPorHora { get; set; }
-        public byte HorasTrabajadas { get; set; }
-        public float Aumento { get; set; }
-        public float SalarioBruto { get; set; }
-        public float SalarioNeto { get; set; }
+        public string Name { get; set; }
+        public string Role { get; set; }
+        public float HourSalary { get; set; }
+        public byte WorkedHours { get; set; }
+        public float Raise { get; set; }
+        public float GrossSalary { get; set; }
+        public float NetSalary { get; set; }
     }
-
+     
     class Program
     {
-        static List<Empleado> empleados = new List<Empleado>();
+        static List<Employee> employees = new List<Employee>();
 
         static void Main(string[] args)
         {
-            string respuesta;
+            string answer;
 
             do
             {
-                Empleado emp = new Empleado();
+                Employee emp = new Employee();
                 ShowMenu(emp);
-                empleados.Add(emp);
+                employees.Add(emp);
 
                 Console.WriteLine("\n¿Desea agregar otro empleado? (s/n)");
-                respuesta = Console.ReadLine()!.ToLower();
+                answer = Console.ReadLine()!.ToLower();
 
                 Console.Clear();
 
-            } while (respuesta == "s");
+            } while (answer == "s");
 
-            MostrarReporteGeneral();
+            ShowGeneralReport();
         }
 
-        static void ShowMenu(Empleado emp)
+        static void ShowMenu(Employee emp)
         {
             Console.WriteLine("Identificación del empleado: ");
             emp.Id = Console.ReadLine()!;
 
             Console.WriteLine("\nNombre del empleado: ");
-            emp.Nombre = Console.ReadLine()!;
+            emp.Name = Console.ReadLine()!;
 
             Console.WriteLine("\nRol del empleado: ");
             Console.WriteLine("1 = Operario \n2 = Técnico \n3 = Profesional");
@@ -55,29 +55,29 @@ namespace ConsoleApp1
             RoleValidation(rol, emp);
         }
 
-        static void RoleValidation(byte rol, Empleado emp)
+        static void RoleValidation(byte rol, Employee emp)
         {
             switch (rol)
             {
                 case 1:
-                    emp.Rol = "Operario";
-                    emp.Aumento = 1.15f;
+                    emp.Role = "Operario";
+                    emp.Raise = 1.15f;
                     Console.WriteLine("Se ha seleccionado el rol: Operario");
-                    CalcularPago(emp);
+                    CalculatePayment(emp);
                     break;
 
                 case 2:
-                    emp.Rol = "Técnico";
-                    emp.Aumento = 1.10f;
+                    emp.Role = "Técnico";
+                    emp.Raise = 1.10f;
                     Console.WriteLine("Se ha seleccionado el rol: Técnico");
-                    CalcularPago(emp);
+                    CalculatePayment(emp);
                     break;
 
                 case 3:
-                    emp.Rol = "Profesional";
-                    emp.Aumento = 1.05f;
+                    emp.Role = "Profesional";
+                    emp.Raise = 1.05f;
                     Console.WriteLine("Se ha seleccionado el rol: Profesional");
-                    CalcularPago(emp);
+                    CalculatePayment(emp);
                     break;
             }
 
@@ -85,57 +85,57 @@ namespace ConsoleApp1
             PaymentReport(emp);
         }
 
-        static void CalcularPago(Empleado emp)
+        static void CalculatePayment(Employee emp)
         {
             float ssDeduction = 0.0917f;
 
             Console.WriteLine("\nSalario a pagar por hora: ");
-            emp.SalarioPorHora = float.Parse(Console.ReadLine()!);
+            emp.HourSalary = float.Parse(Console.ReadLine()!);
 
             Console.WriteLine("\nIngrese las horas laboradas: ");
-            emp.HorasTrabajadas = byte.Parse(Console.ReadLine()!);
+            emp.WorkedHours = byte.Parse(Console.ReadLine()!);
 
-            emp.SalarioBruto = (emp.SalarioPorHora * emp.HorasTrabajadas) * emp.Aumento;
-            emp.SalarioNeto = emp.SalarioBruto * (1 - ssDeduction);
+            emp.GrossSalary = (emp.HourSalary * emp.WorkedHours) * emp.Raise;
+            emp.NetSalary = emp.GrossSalary * (1 - ssDeduction);
         }
 
-        static void PaymentReport(Empleado emp)
+        static void PaymentReport(Employee emp)
         {
             Console.WriteLine("Resumen de pago\n");
 
             Console.WriteLine($"Cédula del empleado: {emp.Id}");
-            Console.WriteLine($"Nombre del empleado: {emp.Nombre}");
-            Console.WriteLine($"Tipo de empleado: {emp.Rol}");
-            Console.WriteLine($"Salario por hora: {emp.SalarioPorHora}");
-            Console.WriteLine($"Cantidad de horas: {emp.HorasTrabajadas}");
-            Console.WriteLine($"Aumento aplicado: {emp.Aumento}");
-            Console.WriteLine($"Salario bruto: {emp.SalarioBruto}");
+            Console.WriteLine($"Nombre del empleado: {emp.Name}");
+            Console.WriteLine($"Tipo de empleado: {emp.Role}");
+            Console.WriteLine($"Salario por hora: {emp.HourSalary}");
+            Console.WriteLine($"Cantidad de horas: {emp.WorkedHours}");
+            Console.WriteLine($"Aumento aplicado: {emp.Raise}");
+            Console.WriteLine($"Salario bruto: {emp.GrossSalary}");
             Console.WriteLine($"Deducción CCSS: 9.17%");
-            Console.WriteLine($"Salario neto: {emp.SalarioNeto}");
+            Console.WriteLine($"Salario neto: {emp.NetSalary}");
         }
 
-        static void MostrarReporteGeneral()
+        static void ShowGeneralReport()
         {
             Console.WriteLine("Reporte general\n");
 
             int countOperario = 0, countTecnico = 0, countProfesional = 0;
             float totalOperario = 0, totalTecnico = 0, totalProfesional = 0;
 
-            foreach (var emp in empleados)
+            foreach (var emp in employees)
             {
-                switch (emp.Rol)
+                switch (emp.Role)
                 {
                     case "Operario":
                         countOperario++;
-                        totalOperario += emp.SalarioNeto;
+                        totalOperario += emp.NetSalary;
                         break;
                     case "Técnico":
                         countTecnico++;
-                        totalTecnico += emp.SalarioNeto;
+                        totalTecnico += emp.NetSalary;
                         break;
                     case "Profesional":
                         countProfesional++;
-                        totalProfesional += emp.SalarioNeto;
+                        totalProfesional += emp.NetSalary;
                         break;
                 }
             }
