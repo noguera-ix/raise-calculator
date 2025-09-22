@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
+    #region Class to collect employee information
     class Employee
     {
         public string Id { get; set; }
@@ -14,7 +15,8 @@ namespace ConsoleApp1
         public float GrossSalary { get; set; }
         public float NetSalary { get; set; }
     }
-     
+    #endregion
+
     class Program
     {
         static List<Employee> employees = new List<Employee>();
@@ -39,6 +41,7 @@ namespace ConsoleApp1
             ShowGeneralReport();
         }
 
+        #region Method to show the main menu
         static void ShowMenu(Employee emp)
         {
             Console.WriteLine("Identificación del empleado: ");
@@ -54,7 +57,9 @@ namespace ConsoleApp1
             Console.Clear();
             RoleValidation(rol, emp);
         }
+        #endregion
 
+        #region Method to validate the employee's role
         static void RoleValidation(byte rol, Employee emp)
         {
             switch (rol)
@@ -84,7 +89,9 @@ namespace ConsoleApp1
             Console.Clear();
             PaymentReport(emp);
         }
+        #endregion
 
+        #region Method to calculate employee's payment
         static void CalculatePayment(Employee emp)
         {
             float ssDeduction = 0.0917f;
@@ -98,7 +105,9 @@ namespace ConsoleApp1
             emp.GrossSalary = (emp.HourSalary * emp.WorkedHours) * emp.Raise;
             emp.NetSalary = emp.GrossSalary * (1 - ssDeduction);
         }
+        #endregion
 
+        #region Method to show the payment report
         static void PaymentReport(Employee emp)
         {
             Console.WriteLine("Resumen de pago\n");
@@ -113,7 +122,9 @@ namespace ConsoleApp1
             Console.WriteLine($"Deducción CCSS: 9.17%");
             Console.WriteLine($"Salario neto: {emp.NetSalary}");
         }
+        #endregion
 
+        #region Method to show the final payment information
         static void ShowGeneralReport()
         {
             Console.WriteLine("Reporte general\n");
@@ -129,10 +140,12 @@ namespace ConsoleApp1
                         countOperario++;
                         totalOperario += emp.NetSalary;
                         break;
+
                     case "Técnico":
                         countTecnico++;
                         totalTecnico += emp.NetSalary;
                         break;
+
                     case "Profesional":
                         countProfesional++;
                         totalProfesional += emp.NetSalary;
@@ -152,5 +165,6 @@ namespace ConsoleApp1
             Console.WriteLine($"Acumulado salario neto para profesionales: {totalProfesional}");
             Console.WriteLine($"Promedio salario neto para profesionales: {(countProfesional > 0 ? totalProfesional / countProfesional : 0)}");
         }
+        #endregion
     }
 }
